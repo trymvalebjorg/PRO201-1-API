@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bright_web_api.Data;
+using bright_web_api.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,9 +19,11 @@ namespace bright_web_api
 {
     public class Startup
     {
+        public string ConnectionString { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConnectionString = Configuration.GetConnectionString("DefaultConnectionString"); 
         }
 
         public IConfiguration Configuration { get; }
@@ -28,6 +33,15 @@ namespace bright_web_api
         {
 
             services.AddControllers();
+
+            // DB context with SQL
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            //Services
+            services.AddTransient<RepairsService>();
+            services.AddTransient<ToolsService>();
+            services.AddTransient<StepsService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "bright_web_api", Version = "v1" });
@@ -54,6 +68,8 @@ namespace bright_web_api
             {
                 endpoints.MapControllers();
             });
+
+            //AppDbInitializer.Seed(app);
         }
     }
 }
