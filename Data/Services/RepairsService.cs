@@ -15,7 +15,7 @@ namespace bright_web_api.Data.Services
             _context = context;
         }
 
-        public void AddRepair(RepairVM repair)
+        public void AddRepair(RepairWithStepsAndToolsVM repair)
         {
             var _repair = new Repair()
             {
@@ -24,11 +24,27 @@ namespace bright_web_api.Data.Services
                 Image = repair.Image,
                 Difficulty = repair.Difficulty,
                 Time = repair.Time,
-                Pdf = repair.Pdf
+                Pdf = repair.Pdf,
+                ProductId = repair.ProductId,
             };
 
             _context.Repairs.Add(_repair);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
+
+
+            foreach (var id in repair.ToolIds)
+            {
+
+            var _repair_Tool = new Repair_Tool()
+                {
+                    RepairId = _repair.Id,
+                    ToolId = id
+                };
+
+            _context.Repairs_Tools.Add(_repair_Tool);
+            _context.SaveChanges();
+            }
+
         }
 
         public List<Repair> GetAllRepairs() => _context.Repairs.ToList();
@@ -43,8 +59,8 @@ namespace bright_web_api.Data.Services
                 Difficulty = repair.Difficulty,
                 Time = repair.Time,
                 Pdf = repair.Pdf,
-                Tools = repair.Repair_Tools.Select(n => n.Tool.Name).ToList(),
-                Steps = repair.Steps.Select(n => n.Id).ToList(),
+                ToolIds = repair.Repair_Tools.Select(n => n.Id).ToList(),
+                StepIds = repair.Steps.Select(n => n.Id).ToList()
             }).FirstOrDefault();
 
             return _repairWithStepsAndTools;

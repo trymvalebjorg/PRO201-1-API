@@ -47,9 +47,13 @@ namespace bright_web_api.Data
                 .HasForeignKey(ri => ri.ReplacedPartId);
         }
 
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Repair> Repairs { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<Repair_Tool> Repairs_Tools { get; set; }
+        public DbSet<Report_RepairedPart> Reports_RepairedParts { get; set; }
+        public DbSet<Report_ReplacedPart> Reports_ReplacedParts { get; set; }
         public DbSet<Tool> Tools { get; set; }
 
     }

@@ -23,8 +23,9 @@ namespace bright_web_api.Data.Services
                 Title = step.Title,
                 Description = step.Description,
                 Image = step.Image,
-                Video = step.Video
-            };
+                Video = step.Video,
+                RepairId = step.RepairId
+            };  
 
             _context.Steps.Add(_step);
             _context.SaveChanges();

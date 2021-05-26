@@ -19,13 +19,6 @@ namespace bright_web_api.Controllers
             _stepsService = stepsService;
         }
 
-        [HttpPost("add-step")]
-        public IActionResult AddStep([FromBody] StepVM step)
-        {
-            _stepsService.AddStep(step);
-            return Ok();
-        }
-
         [HttpGet("get-all-steps")]
         public IActionResult GetAllSteps()
         {
@@ -45,6 +38,13 @@ namespace bright_web_api.Controllers
         {
             var step = _stepsService.GetStepsByRepairId(repairId);
             return Ok(step);
+        }
+
+        [HttpPost("add-step")]
+        public IActionResult AddStep([FromBody] StepVM step)
+        {
+            _stepsService.AddStep(step);
+            return Ok();
         }
     }
 }

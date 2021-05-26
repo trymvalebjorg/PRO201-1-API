@@ -11,6 +11,6 @@ namespace bright_web_api.Data.Models
         public string Name { get; set; }
         public string Image { get; set; }
         public List<Report> Reports { get; set; }
-
+        public List<Repair> Repairs { get; set; }
     }
 }

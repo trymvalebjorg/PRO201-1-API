@@ -19,13 +19,6 @@ namespace bright_web_api.Controllers
             _toolsService = toolsService;
         }
 
-        [HttpPost("add-tool")]
-        public IActionResult AddTool([FromBody] ToolVM tool)
-        {
-            _toolsService.AddTool(tool);
-            return Ok();
-        }
-
         [HttpGet("get-all-tools")]
         public IActionResult GetAllTools()
         {
@@ -38,6 +31,13 @@ namespace bright_web_api.Controllers
         {
             var tool = _toolsService.GetToolById(id);
             return Ok(tool);
+        }
+
+        [HttpPost("add-tool")]
+        public IActionResult AddTool([FromBody] ToolVM tool)
+        {
+            _toolsService.AddTool(tool);
+            return Ok();
         }
     }
 }

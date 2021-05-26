@@ -31,16 +31,31 @@ namespace bright_web_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Services
 
             services.AddControllers();
+
+            // Cross-Origin Resource Sharing
+            services.AddCors(
+                options => {
+                    options.AddPolicy("AllowAll",
+                    builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    );
+                }
+            ); 
+
 
             // DB context with SQL
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
 
-            //Services
             services.AddTransient<RepairsService>();
             services.AddTransient<ToolsService>();
             services.AddTransient<StepsService>();
+            services.AddTransient<ProductsService>();
+            services.AddTransient<ReportsService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -53,12 +68,24 @@ namespace bright_web_api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "bright_web_api v1"));
+
             }
 
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "bright_web_api v1");
+                c.RoutePrefix = string.Empty;
+            });
+
+            app.UseCors("AllowAll");
+
             app.UseHttpsRedirection();
+            
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -68,6 +95,7 @@ namespace bright_web_api
             {
                 endpoints.MapControllers();
             });
+
 
             //AppDbInitializer.Seed(app);
         }

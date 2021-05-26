@@ -19,27 +19,6 @@ namespace bright_web_api.Controllers
         {
             _repairsService = repairsService;
         }
-
-        [HttpPost("add-repair")]
-        public IActionResult AddRepair([FromBody]RepairVM repair)
-        {
-            _repairsService.AddRepair(repair);
-            return Ok();
-        }
-
-        [HttpPut("update-repair-by-id/{id}")]
-        public IActionResult UpdateRepairById(int id, [FromBody]RepairVM repair)
-        {
-            var _updatedRepair = _repairsService.UpdateRepairById(id, repair);
-            return Ok(_updatedRepair);
-        }
-
-        [HttpDelete("delete-repair-by-id/{id}")]
-        public IActionResult DeleteRepairById(int id)
-        {
-            _repairsService.DeleteRepairById(id);
-            return Ok();
-        }
  
         [HttpGet("get-all-repairs")]
         public IActionResult GetAllRepairs()
@@ -53,6 +32,20 @@ namespace bright_web_api.Controllers
         {
             var repair = _repairsService.GetRepairById(id);
             return Ok(repair);
+        }
+
+        [HttpPost("add-repair")]
+        public IActionResult AddRepair([FromBody] RepairWithStepsAndToolsVM repair)
+        {
+            _repairsService.AddRepair(repair);
+            return Ok();
+        }
+
+        [HttpDelete("delete-repair-by-id/{id}")]
+        public IActionResult DeleteRepairById(int id)
+        {
+            _repairsService.DeleteRepairById(id);
+            return Ok();
         }
     }
 }

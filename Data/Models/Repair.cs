@@ -18,5 +18,7 @@ namespace bright_web_api.Data.Models
         //Navigation properties
         public List<Step> Steps { get; set; }
         public List<Repair_Tool> Repair_Tools { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
     }
 }

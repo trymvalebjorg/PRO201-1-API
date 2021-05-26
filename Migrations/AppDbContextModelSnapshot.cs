@@ -33,7 +33,7 @@ namespace bright_web_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.Repair", b =>
@@ -55,6 +55,9 @@ namespace bright_web_api.Migrations
                     b.Property<string>("Pdf")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Time")
                         .HasColumnType("int");
 
@@ -62,6 +65,8 @@ namespace bright_web_api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Repairs");
                 });
@@ -141,7 +146,7 @@ namespace bright_web_api.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Report");
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.Report_RepairedPart", b =>
@@ -163,7 +168,7 @@ namespace bright_web_api.Migrations
 
                     b.HasIndex("ReportId");
 
-                    b.ToTable("Report_RepairedPart");
+                    b.ToTable("Reports_RepairedParts");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.Report_ReplacedPart", b =>
@@ -185,7 +190,7 @@ namespace bright_web_api.Migrations
 
                     b.HasIndex("ReportId");
 
-                    b.ToTable("Report_ReplacedPart");
+                    b.ToTable("Reports_ReplacedParts");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.Step", b =>
@@ -233,6 +238,17 @@ namespace bright_web_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tools");
+                });
+
+            modelBuilder.Entity("bright_web_api.Data.Models.Repair", b =>
+                {
+                    b.HasOne("bright_web_api.Data.Models.Product", "Product")
+                        .WithMany("Repairs")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.Repair_Tool", b =>
@@ -316,6 +332,8 @@ namespace bright_web_api.Migrations
 
             modelBuilder.Entity("bright_web_api.Data.Models.Product", b =>
                 {
+                    b.Navigation("Repairs");
+
                     b.Navigation("Reports");
                 });
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bright_web_api.Data.Models;
 
 namespace bright_web_api.Data.ViewModels
 {
@@ -13,6 +14,7 @@ namespace bright_web_api.Data.ViewModels
         public int Difficulty { get; set; }
         public int Time { get; set; }
         public string Pdf { get; set; }
+        public int ProductId { get; set; }
     }
 
     public class RepairWithStepsAndToolsVM
@@ -23,7 +25,10 @@ namespace bright_web_api.Data.ViewModels
         public int Difficulty { get; set; }
         public int Time { get; set; }
         public string Pdf { get; set; }
-        public List<string> Tools { get; set; }
-        public List<int> Steps { get; set; }
+        public int ProductId { get; set; }
+        public List<int> ToolIds { get; set; }
+        public List<int> StepIds { get; set; }
+
     }
+
 }
