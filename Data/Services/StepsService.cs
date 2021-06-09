@@ -25,23 +25,65 @@ namespace bright_web_api.Data.Services
                 Image = step.Image,
                 Video = step.Video,
                 RepairId = step.RepairId
-            };  
+            };
 
             _context.Steps.Add(_step);
             _context.SaveChanges();
         }
 
-        public List<Step> GetAllSteps() => _context.Steps.ToList();
+        public List<StepVM> GetAllSteps()
+        {
+            var _steps = _context.Steps.Select(step => new StepVM()
+            {
+                Id = step.Id,
+                Title = step.Title,
+                Description = step.Description,
+                Image = step.Image,
+                Video = step.Video,
+                RepairId = step.RepairId
+            }).ToList();
+
+            return _steps;
+        }
 
         public List<StepWithoutRepairIdVM> GetStepsByRepairId(int repairId) => _context.Steps.Where(n => n.RepairId == repairId).Select(step => new StepWithoutRepairIdVM()
         {
+            Id = step.Id,
             Title = step.Title,
             Description = step.Description,
             Image = step.Image,
             Video = step.Video,
         }).ToList();
 
-        public Step GetStepById(int stepId) => _context.Steps.FirstOrDefault(n => n.Id == stepId);
+        public StepWithRepairVM GetStepById(int stepId)
+        {
+            var _step = _context.Steps.Where(n => n.Id == stepId).Select(step => new StepWithRepairVM()
+            {
+                Id = step.Id,
+                Title = step.Title,
+                Description = step.Description,
+                Image = step.Image,
+                Video = step.Video,
+                Repair = step.Repair.Title
+            }).FirstOrDefault();
 
+            return _step;
+        }
+
+        public StepWithRepairVM GetFirstStep()
+        {
+            var _step = _context.Steps.Select(step => new StepWithRepairVM()
+            {
+                Id = step.Id,
+                Title = step.Title,
+                Description = step.Description,
+                Image = step.Image,
+                Video = step.Video,
+                Repair = step.Repair.Title
+            }).FirstOrDefault();
+
+            return _step;
+
+        }
     }
 }

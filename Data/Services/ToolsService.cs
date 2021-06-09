@@ -32,6 +32,5 @@ namespace bright_web_api.Data.Services
 
         public Tool GetToolById(int toolId) => _context.Tools.FirstOrDefault(n => n.Id == toolId);
 
-
     }
 }

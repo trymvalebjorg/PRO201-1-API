@@ -108,7 +108,7 @@ namespace bright_web_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RepairedPart");
+                    b.ToTable("RepairedParts");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.ReplacedPart", b =>
@@ -126,7 +126,7 @@ namespace bright_web_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReplacedPart");
+                    b.ToTable("ReplacedParts");
                 });
 
             modelBuilder.Entity("bright_web_api.Data.Models.Report", b =>

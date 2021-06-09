@@ -437,3 +437,76 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [Reports_RepairedParts] DROP CONSTRAINT [FK_Reports_RepairedParts_RepairedPart_RepairedPartId];
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [Reports_ReplacedParts] DROP CONSTRAINT [FK_Reports_ReplacedParts_ReplacedPart_ReplacedPartId];
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [ReplacedPart] DROP CONSTRAINT [PK_ReplacedPart];
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [RepairedPart] DROP CONSTRAINT [PK_RepairedPart];
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    EXEC sp_rename N'[ReplacedPart]', N'ReplacedParts';
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    EXEC sp_rename N'[RepairedPart]', N'RepairedParts';
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [ReplacedParts] ADD CONSTRAINT [PK_ReplacedParts] PRIMARY KEY ([Id]);
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [RepairedParts] ADD CONSTRAINT [PK_RepairedParts] PRIMARY KEY ([Id]);
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [Reports_RepairedParts] ADD CONSTRAINT [FK_Reports_RepairedParts_RepairedParts_RepairedPartId] FOREIGN KEY ([RepairedPartId]) REFERENCES [RepairedParts] ([Id]) ON DELETE CASCADE;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    ALTER TABLE [Reports_ReplacedParts] ADD CONSTRAINT [FK_Reports_ReplacedParts_ReplacedParts_ReplacedPartId] FOREIGN KEY ([ReplacedPartId]) REFERENCES [ReplacedParts] ([Id]) ON DELETE CASCADE;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210608192142_RepairedReplacedParts')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20210608192142_RepairedReplacedParts', N'5.0.6');
+END;
+GO
+
+COMMIT;
+GO
+

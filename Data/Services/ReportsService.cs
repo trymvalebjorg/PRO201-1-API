@@ -15,15 +15,15 @@ namespace bright_web_api.Data.Services
             _context = context;
         }
 
-        public ReportVM GetAllReports()
+        public List<ReportShortVM> GetAllReports()
         {
-            var _report = _context.Reports.Select(report => new ReportVM()
+            var _report = _context.Reports.Select(report => new ReportShortVM()
             {
                 UserId = report.UserId,
                 ProductId = report.ProductId,
                 RepairedPartIds = report.Report_RepairedParts.Select(n => n.Id).ToList(),
                 ReplacedPartIds = report.Report_ReplacedParts.Select(n => n.Id).ToList(),
-            }).FirstOrDefault();
+            }).ToList();
 
             return _report;
         }

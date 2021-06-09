@@ -56,6 +56,10 @@ namespace bright_web_api
             services.AddTransient<StepsService>();
             services.AddTransient<ProductsService>();
             services.AddTransient<ReportsService>();
+            services.AddTransient<ReplacedPartsService>();
+            services.AddTransient<RepairedPartsService>();
+
+
 
             services.AddSwaggerGen(c =>
             {
@@ -83,8 +87,6 @@ namespace bright_web_api
 
             app.UseHttpsRedirection();
             
-            app.UseDefaultFiles();
-
             app.UseStaticFiles();
 
             app.UseRouting();

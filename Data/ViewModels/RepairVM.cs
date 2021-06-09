@@ -17,7 +17,18 @@ namespace bright_web_api.Data.ViewModels
         public int ProductId { get; set; }
     }
 
-    public class RepairWithStepsAndToolsVM
+    public class RepairShortVM
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
+        public int Difficulty { get; set; }
+        public int Time { get; set; }
+        public int ProductId { get; set; }
+    }
+
+    public class RepairWithStepIdsAndToolIdsVM
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -26,7 +37,25 @@ namespace bright_web_api.Data.ViewModels
         public int Time { get; set; }
         public string Pdf { get; set; }
         public int ProductId { get; set; }
+        public List<Tool> Tools { get; set; }
         public List<int> ToolIds { get; set; }
+
+        public List<int> StepIds { get; set; }
+
+    }
+
+
+    public class RepairWithStepsAndToolsVM
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
+        public int Difficulty { get; set; }
+        public int Time { get; set; }
+        public string Pdf { get; set; }
+        public int ProductId { get; set; }
+        public List<Tool> Tools { get; set; }
         public List<int> StepIds { get; set; }
 
     }

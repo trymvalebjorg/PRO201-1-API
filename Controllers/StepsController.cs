@@ -29,8 +29,8 @@ namespace bright_web_api.Controllers
         [HttpGet("get-step-by-id/{id}")]
         public IActionResult GetStepById(int id)
         {
-            var tool = _stepsService.GetStepById(id);
-            return Ok(tool);
+            var step = _stepsService.GetStepById(id);
+            return Ok(step);
         }
 
         [HttpGet("get-steps-by-repair-id/{repairId}")]
@@ -39,6 +39,15 @@ namespace bright_web_api.Controllers
             var step = _stepsService.GetStepsByRepairId(repairId);
             return Ok(step);
         }
+
+
+        [HttpGet("get-first-step")]
+        public IActionResult GetFirstStep()
+        {
+            var step = _stepsService.GetFirstStep();
+            return Ok(step);
+        }
+
 
         [HttpPost("add-step")]
         public IActionResult AddStep([FromBody] StepVM step)

@@ -15,7 +15,7 @@ namespace bright_web_api.Data.Services
             _context = context;
         }
 
-        public void AddRepair(RepairWithStepsAndToolsVM repair)
+        public void AddRepair(RepairWithStepIdsAndToolIdsVM repair)
         {
             var _repair = new Repair()
             {
@@ -46,8 +46,37 @@ namespace bright_web_api.Data.Services
             }
 
         }
+        public List<RepairWithStepsAndToolsVM> GetRepairsByProductId(int productId) => _context.Repairs.Where(n => n.ProductId == productId).Select(repair => new RepairWithStepsAndToolsVM()
+        {
+            Title = repair.Title,
+            Description = repair.Description,
+            Image = repair.Image,
+            Difficulty = repair.Difficulty,
+            Time = repair.Time,
+            Pdf = repair.Pdf,
+            Tools = repair.Repair_Tools.Select(n => n.Tool).ToList(),
+            StepIds = repair.Steps.Select(n => n.Id).ToList()
+        }).ToList();
 
-        public List<Repair> GetAllRepairs() => _context.Repairs.ToList();
+        public List<RepairWithStepsAndToolsVM> GetAllRepairs()
+        {
+            var _repairs = _context.Repairs.Select(repair => new RepairWithStepsAndToolsVM()
+            {
+                Id = repair.Id,
+                Title = repair.Title,
+                Description = repair.Description,
+                Image = repair.Image,
+                Difficulty = repair.Difficulty,
+                Time = repair.Time,
+                Pdf = repair.Pdf,
+                ProductId = repair.ProductId,
+                Tools = repair.Repair_Tools.Select(n => n.Tool).ToList(),
+                StepIds = repair.Steps.Select(n => n.Id).ToList()
+            }).ToList();
+
+            return _repairs;
+        }
+
 
         public RepairWithStepsAndToolsVM GetRepairById(int repairId)
         {
@@ -59,7 +88,7 @@ namespace bright_web_api.Data.Services
                 Difficulty = repair.Difficulty,
                 Time = repair.Time,
                 Pdf = repair.Pdf,
-                ToolIds = repair.Repair_Tools.Select(n => n.Id).ToList(),
+                Tools = repair.Repair_Tools.Select(n => n.Tool).ToList(),
                 StepIds = repair.Steps.Select(n => n.Id).ToList()
             }).FirstOrDefault();
 

@@ -54,6 +54,8 @@ namespace bright_web_api.Data
         public DbSet<Repair_Tool> Repairs_Tools { get; set; }
         public DbSet<Report_RepairedPart> Reports_RepairedParts { get; set; }
         public DbSet<Report_ReplacedPart> Reports_ReplacedParts { get; set; }
+        public DbSet<RepairedPart> RepairedParts { get; set; }
+        public DbSet<ReplacedPart> ReplacedParts { get; set; }
         public DbSet<Tool> Tools { get; set; }
 
     }

@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/bright-web-api-dbserver/databases/bright-web-api-db",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/bright-web-api-dbserver/databases/bright-web-api-db",
       "type": "mssql.azure",
       "connectionId": "DefaultConnectionString",
       "secretStore": "AzureAppSettings"

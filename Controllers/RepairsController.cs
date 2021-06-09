@@ -34,8 +34,16 @@ namespace bright_web_api.Controllers
             return Ok(repair);
         }
 
+
+        [HttpGet("get-repairs-by-product-id/{productId}")]
+        public IActionResult GetRepairsByProductId(int productId)
+        {
+            var repair = _repairsService.GetRepairsByProductId(productId);
+            return Ok(repair);
+        }
+
         [HttpPost("add-repair")]
-        public IActionResult AddRepair([FromBody] RepairWithStepsAndToolsVM repair)
+        public IActionResult AddRepair([FromBody] RepairWithStepIdsAndToolIdsVM repair)
         {
             _repairsService.AddRepair(repair);
             return Ok();

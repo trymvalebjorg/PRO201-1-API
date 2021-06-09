@@ -10,4 +10,5 @@ namespace bright_web_api.Data.ViewModels
         public string Name { get; set; }
         public string Image { get; set; }
     }
+
 }
