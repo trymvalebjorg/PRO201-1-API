@@ -11,6 +11,7 @@ C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\P
 C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\parts\solar-panel.svg
 C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\parts\usb-cover.svg
 C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\pcb-troubleshooting.jpeg
+C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\pdf.pdf
 C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\products\move.png
 C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\products\smart.png
 C:\Users\Trym\Dropbox\Skole\PRO201-1\Eksamen\bright-web-api\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\products\start.png
